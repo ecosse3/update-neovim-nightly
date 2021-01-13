@@ -51,12 +51,12 @@ fi
 update_neovim() {
   printf "${RED}Updating Neovim Nightly...${NC}\n"
   HTTPS_URL="https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage"
-  CURL_CMD="curl -w http_code=%{http_code}"
-  CURL_OUTPUT=`${CURL_CMD} ${HTTPS_URL} 2> /dev/null`
+  CURL_CMD="curl -w http_code=%{http_code} -L"
+  CURL_OUTPUT=`${CURL_CMD} ${HTTPS_URL} -o /tmp/nvim`
   HTTP_CODE=$(echo "${CURL_OUTPUT}" | sed -e 's/.*\http_code=//')
   ERROR_MESSAGE=$(echo "${CURL_OUTPUT}" | sed -e 's/http_code.*//')
 
-  if [ ${HTTP_CODE} -lt 200 ]; then
+  if [[ ${HTTP_CODE} == 200 ]]; then
     chmod +x /tmp/nvim;
     sudo mv /tmp/nvim /usr/local/bin;
     printf "${GREEN}Neovim Nightly has been updated successfully!${NC}\n"
