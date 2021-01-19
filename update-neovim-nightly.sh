@@ -8,17 +8,17 @@ BOLD=$(tput bold)
 NORMAL=$(tput sgr0)
 
 # Check if necessary applications are installed
-if [ ! command -v wget &> /dev/null ]; then
+if ! [ -x "$(command -v wget)" ]; then
   printf "\n${RED}wget not found in path. Please install it to continue!${NC}\n"
   exit
 fi
 
-if [ ! command -v curl &> /dev/null ]; then
+if ! [ -x "$(command -v curl)" ]; then
   printf "\n${RED}curl not found in path. Please install it to continue!${NC}\n"
   exit
 fi
 
-if [ ! command -v xmllint &> /dev/null ]; then
+if ! [ -x "$(command -v xmllint)" ]; then
   printf "\n${RED}xmllint not found in path. Please install it to continue!${NC}\n"
   exit
 fi
