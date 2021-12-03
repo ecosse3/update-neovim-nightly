@@ -73,8 +73,7 @@ update_neovim() {
 
   if [[ ${HTTP_CODE} == 200 ]]; then
     chmod +x /tmp/nvim;
-    sudo cp /tmp/nvim /usr/local/bin;
-    sudo mv /tmp/nvim /usr/bin;
+    sudo mv /tmp/nvim /usr/local/bin;
     printf "${GREEN}Neovim Nightly has been updated successfully!${NC}\n"
   else
     printf "${RED}Neovim Nightly has NOT been updated! ERROR: ${ERROR_MESSAGE}${NC}\n"
